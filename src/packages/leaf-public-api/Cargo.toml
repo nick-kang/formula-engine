@@ -1,0 +1,29 @@
+[package]
+name = "leaf-public-api"
+version = "0.0.0"
+edition = "2021"
+publish = false
+description = "Public API server"
+
+[dependencies]
+chrono = "0.4.19"
+deadpool-redis = "0.10.1"
+dotenv = "0.15.0"
+engine = { path = "../engine" }
+env_logger = "0.9"
+http-auth-basic = "0.3"
+hex = "0.4.3"
+log = "0.4"
+postgres = { version = "0.19", features = ["with-uuid-0_8"] }
+postgres-types = { version = "0.2.2", features = ["derive"] }
+redis = "0.21.4"
+rocket = { version = "0.5.0-rc.1", features = ["json"] }
+serde = "1.0"
+serde_json = "1.0"
+sha2 = "0.9"
+uuid = "0.8.2"
+
+[dependencies.rocket_sync_db_pools]
+version = "0.1.0-rc.1"
+default-features = false
+features = ["postgres_pool"]

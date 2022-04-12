@@ -1,0 +1,66 @@
+{
+  "folders": [
+    {
+      "path": "./management",
+      "name": "management"
+    },
+    {
+      "path": "./engine",
+      "name": "engine"
+    },
+    {
+      "path": "./public-api",
+      "name": "public-api"
+    },
+    {
+      "path": ".",
+      "name": "root"
+    }
+  ],
+  "settings": {
+    "typescript.tsdk": "management/node_modules/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "search.followSymlinks": false,
+    "search.exclude": {
+      "**/*.tsbuildinfo": true,
+      ".yarn": true,
+      "**/.betterer.results": true,
+      "**/lib": true
+    },
+    "files.exclude": {
+      "**/*.tsbuildinfo": true,
+      "management": true,
+      "engine": true,
+      "public-api": true
+    },
+    "[rust]": {
+      "editor.defaultFormatter": "matklad.rust-analyzer"
+    },
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[scss]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true
+    },
+    "editor.tabSize": 2,
+    "eslint.debug": false,
+    "eslint.packageManager": "yarn",
+    "eslint.alwaysShowStatus": true,
+    "cSpell.words": ["arrayify", "counterparty", "microservices"],
+    "[yaml]": {
+      "editor.tabSize": 2,
+      "editor.detectIndentation": false
+    },
+    "typescript.tsserver.maxTsServerMemory": 20000
+  }
+}

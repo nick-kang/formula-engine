@@ -1,0 +1,16 @@
+[package]
+name = "engine"
+version = "0.0.0"
+edition = "2021"
+publish = false
+description = "Formulas parsing and evaluation logic."
+
+[dependencies]
+lazy_static = "1.4.0"
+pest = "2.0"
+pest_derive = "2.0"
+serde_json = "1.0"
+serde = "1.0"
+anyhow = { version = "1.0", features = ["backtrace"] }
+thiserror = "1.0"
+rocket = { version = "0.5.0-rc.1", features = ["json"] }

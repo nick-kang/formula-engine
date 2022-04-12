@@ -1,0 +1,22 @@
+lib
+dist
+build
+coverage
+*.tsbuildinfo
+
+node_modules
+*.log
+
+# Yarn without Zero-Installs
+**/.yarn/*
+!**/.yarn/patches
+!**/.yarn/releases
+!**/.yarn/plugins
+!**/.yarn/sdks
+!**/.yarn/versions
+.pnp.*
+
+# Rust
+src/**/target/
+src/**/debug/
+**/*.rs.bk

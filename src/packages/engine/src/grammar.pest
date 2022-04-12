@@ -1,0 +1,72 @@
+WHITESPACE = _{ " " | "\t" | "\n" }
+calculation = _{ SOI ~ any_value ~ EOI }
+
+// primatives
+number = @{
+    "-"?
+    ~ ("0" | ASCII_NONZERO_DIGIT ~ ASCII_DIGIT*)
+    ~ ("." ~ ASCII_DIGIT*)?
+    ~ (^"e" ~ ("+" | "-")? ~ ASCII_DIGIT+)?
+}
+
+field = ${ "[" ~ field_id ~ "]" }
+field_id = @{ ASCII_ALPHANUMERIC+ }
+
+boolean = { "true" | "false" }
+
+null = { "null" }
+
+string = ${ "\"" ~ inner ~ "\"" }
+inner = @{ char* }
+char = {
+    !("\"" | "\\") ~ ANY 
+    | "\\" ~ ("\"" | "\\" | "/" | "b" | "f" | "n" | "r" | "t")
+    | "\\" ~ ("u" ~ ASCII_HEX_DIGIT{4})
+}
+
+primative = _{ string | number | boolean | null }
+
+
+
+// math 
+add         = { "+" }
+subtract    = { "-" }
+multiply    = { "*" }
+divide      = { "/" }
+power       = { "^" }
+math_operation   = _{ add | subtract | multiply | divide | power }
+term = _{ number | "(" ~ math_expression ~ ")" }
+math_input = _{ term | field | if_fn }
+math_expression = { math_input ~ (math_operation ~ math_input)+ }
+
+// conditional
+comparable_value = _{
+    primative 
+    | if_fn 
+}
+
+and = { "and" ~ "(" ~ any_value ~ ("," ~ any_value)* ~ ")" }
+or = { "or" ~ "(" ~ any_value ~ ("," ~ any_value)* ~ ")" }
+eq = { comparable_value ~ "=" ~ comparable_value }
+n_eq = { comparable_value ~ "<>" ~ comparable_value }
+comparable_expression = _{
+    eq 
+    | n_eq
+    | and 
+    | or 
+    | if_fn 
+    | field
+    | boolean
+}
+any_value = _{
+    if_fn
+    | eq 
+    | n_eq 
+    | and 
+    | or
+    | field
+    | math_expression
+    | primative
+}
+// if 
+if_fn = { "if" ~ "(" ~ comparable_expression ~ "," ~ any_value ~ "," ~ any_value ~ ")" }
